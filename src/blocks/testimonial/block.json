@@ -16,6 +16,13 @@
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
 	"viewScript": "file:./view.js",
-	"keywords": ["testimonial", "review", "quotes"]
+	"keywords": ["testimonial", "review", "quotes"],
+	"attributes": {
+		"client": {
+			"type": "string",
+			"source": "html",
+			"selector": ".client"
+		}
+	}
 
 }

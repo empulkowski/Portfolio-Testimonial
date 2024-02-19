@@ -20,5 +20,12 @@
     "testimonial",
     "review",
     "quotes"
-  ]
+  ],
+  "attributes": {
+    "client": {
+      "type": "string",
+      "source": "html",
+      "selector": ".client"
+    }
+  }
 }

@@ -19,6 +19,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/testimonial/editor.scss");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
 
 /**
  * Retrieves the translation of text.
@@ -35,12 +37,6 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
 
 
 /**
@@ -51,30 +47,70 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @return {Element} Element to render.
  */
-function Edit() {
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  // const attributes = props.attributes;
+  // const {attributes, setAttributes} = props;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)()
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "container"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "row"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "col-md-6 offset-md-3"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "testimonial-card"
+    className: "card border-0 shadow"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "row"
+    className: "card-body"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "row align-items-center"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "col-md-3"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    src: "#",
-    alt: "Client",
-    className: "rounded-circle"
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
+    allowedTypes: ['image'],
+    onSelect: file => {
+      console.log(file);
+      setAttributes({
+        imgUrl: file.sizes.thumbnail.url
+      });
+    },
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: attributes.imgUrl,
+      alt: "Upload a photo",
+      onClick: open
+    })
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "col-md-9"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h5", null, "Client Name"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "CEO, Company Name"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    className: "client",
+    tagName: "div",
+    placeholder: "Client Name",
+    value: attributes.client,
+    onChange: client => setAttributes({
+      client
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    className: "title",
+    placeholder: "Job Title",
+    value: attributes.title,
+    onChange: title => setAttributes({
+      title
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
     className: "fas fa-quote-left"
-  }), " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
-    className: "fas fa-quote-right"
-  }))))))));
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.PlainText, {
+    className: "saywhat",
+    placeholder: "oranges lend their bright, citrusy essence to a myriad of culinary creations. Enjoyed fresh or incorporated into savory dishes, oranges infuse dishes with a burst of sunshine and zest. So whether you're savoring a slice or squeezing a glass of freshly squeezed juice, let the citrusy goodness of oranges brighten your day.\n. ",
+    value: attributes.saywhat,
+    onChange: saywhat => setAttributes({
+      saywhat
+    })
+  })))))))));
 }
 
 /***/ }),
@@ -165,8 +201,10 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @return {Element} Element to render.
  */
-function save() {
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+function save({
+  attributes
+}) {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "row"
@@ -179,16 +217,30 @@ function save() {
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "col-md-3"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    src: "#",
-    alt: "Client",
-    className: "rounded-circle"
+    src: attributes.imgUrl,
+    alt: "Photo of Eric Foreman"
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "col-md-9"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h5", null, "Client Name"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "CEO, Company Name"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    className: "client",
+    tagName: "div",
+    value: attributes.client
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    className: "title",
+    value: attributes.title
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "saywhat"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
     className: "fas fa-quote-left"
-  }), " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.PlainText, {
+    className: "author",
+    value: attributes.saywhat,
+    onChange: saywhat => setAttributes({
+      saywhat
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
     className: "fas fa-quote-right"
-  }))))))));
+  })))))))));
 }
 
 /***/ }),
@@ -247,6 +299,16 @@ module.exports = window["wp"]["blocks"];
 
 /***/ }),
 
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["components"];
+
+/***/ }),
+
 /***/ "@wordpress/i18n":
 /*!******************************!*\
   !*** external ["wp","i18n"] ***!
@@ -263,7 +325,7 @@ module.exports = window["wp"]["i18n"];
   \*******************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"portfolio-testimony-block/testimonial","version":"0.1.0","title":"Portfolio Testimony","category":"design","icon":"smiley","description":"Client Testimonials.","example":{},"supports":{"html":false},"textdomain":"portfolio-testimony-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","keywords":["testimonial","review","quotes"]}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"portfolio-testimony-block/testimonial","version":"0.1.0","title":"Portfolio Testimony","category":"design","icon":"smiley","description":"Client Testimonials.","example":{},"supports":{"html":false},"textdomain":"portfolio-testimony-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","keywords":["testimonial","review","quotes"],"attributes":{"client":{"type":"string","source":"html","selector":".client"}}}');
 
 /***/ })
 

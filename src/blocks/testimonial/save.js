@@ -4,7 +4,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import {RichText, useBlockProps, PlainText } from '@wordpress/block-editor';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -15,27 +15,37 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @return {Element} Element to render.
  */
-export default function save() {
+export default function save({attributes}) {
 	return (
-		<p {...useBlockProps.save()}>
+		<div {...useBlockProps.save()}>
 			<div className="row">
 				<div className="col-md-6 offset-md-3">
 					<div className="testimonial-card">
 						<div className="row">
 							<div className="col-md-3">
-								<img src="#" alt="Client" className="rounded-circle"/>
+								<img src={attributes.imgUrl} alt="Photo of Eric Foreman"/>
 							</div>
 							<div className="col-md-9">
-								<h5>Client Name</h5>
-								<p>CEO, Company Name</p>
-								<p><i className="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur
-									adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-									Ut enim ad minim veniam. <i className="fas fa-quote-right"></i></p>
+								<RichText.Content className="client"
+												  tagName="div"
+												  value={attributes.client} />
+								<RichText.Content className="title"
+												  value={attributes.title} />
+
+								<div class="saywhat">
+								<p><i className="fas fa-quote-left"></i>
+									<PlainText className="author"
+
+											   value={attributes.saywhat}
+											   onChange={saywhat => setAttributes({saywhat})}
+									/>
+									<i className="fas fa-quote-right"></i></p>
+							</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</p>
+		</div>
 	);
 }

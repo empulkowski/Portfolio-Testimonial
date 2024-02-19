@@ -11,15 +11,10 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import {useBlockProps, RichText, MediaUpload, MediaUploadCheck, PlainText} from '@wordpress/block-editor';
 
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
 import './editor.scss';
+import {SelectControl} from "@wordpress/components";
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -29,22 +24,60 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
+export default function Edit({attributes, setAttributes}) {
+	// const attributes = props.attributes;
+	// const {attributes, setAttributes} = props;
 	return (
 		<div {...useBlockProps()}>
-			<div className="row">
-				<div className="col-md-6 offset-md-3">
-					<div className="testimonial-card">
-						<div className="row">
-							<div className="col-md-3">
-								<img src="#" alt="Client" className="rounded-circle" />
-							</div>
-							<div className="col-md-9">
-								<h5>Client Name</h5>
-								<p>CEO, Company Name</p>
-								<p><i className="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur
-									adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-									Ut enim ad minim veniam. <i className="fas fa-quote-right"></i></p>
+			<div className="container">
+				<div className="row">
+					<div className="col-md-6 offset-md-3">
+						<div className="card border-0 shadow">
+							<div className="card-body">
+								<div className="row align-items-center">
+									<div className="col-md-3">
+										<MediaUploadCheck>
+											<MediaUpload
+												allowedTypes={['image']}
+												onSelect={ file => {
+													console.log(file);
+													setAttributes({imgUrl: file.sizes.thumbnail.url});
+												}
+												}
+												render={({open})=> <img src={attributes.imgUrl}
+																		alt="Upload a photo"
+																		onClick={open}
+												/>}
+											/>
+										</MediaUploadCheck>
+
+									</div>
+
+									<div className="col-md-9">
+										<RichText
+											className="client"
+											tagName="div"
+											placeholder="Client Name"
+											value={attributes.client}
+											onChange={(client) => setAttributes({client})}
+										/>
+
+										<RichText
+											className="title"
+											placeholder="Job Title"
+											value={attributes.title}
+											onChange={(title) => setAttributes({title})}
+										/>
+										<i className="fas fa-quote-left"></i>
+										<PlainText className="saywhat"
+												   placeholder="oranges lend their bright, citrusy essence to a myriad of culinary creations. Enjoyed fresh or incorporated into savory dishes, oranges infuse dishes with a burst of sunshine and zest. So whether you're savoring a slice or squeezing a glass of freshly squeezed juice, let the citrusy goodness of oranges brighten your day.
+. "
+												   value={attributes.saywhat}
+												   onChange={saywhat => setAttributes({saywhat})}
+										/>
+
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
