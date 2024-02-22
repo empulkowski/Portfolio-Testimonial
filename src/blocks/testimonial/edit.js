@@ -70,7 +70,7 @@ export default function Edit({attributes, setAttributes}) {
 										/>
 										<i className="fas fa-quote-left"></i>
 										<PlainText className="saywhat"
-												   placeholder="oranges lend their bright, citrusy essence to a myriad of culinary creations. Enjoyed fresh or incorporated into savory dishes, oranges infuse dishes with a burst of sunshine and zest. So whether you're savoring a slice or squeezing a glass of freshly squeezed juice, let the citrusy goodness of oranges brighten your day.
+												   placeholder="oranges lend their bright, citrusy essence to a myriad of culinary creations with a burst of sunshine and zest. let the citrusy goodness of oranges brighten your day.
 . "
 												   value={attributes.saywhat}
 												   onChange={saywhat => setAttributes({saywhat})}

@@ -105,7 +105,7 @@ function Edit({
     className: "fas fa-quote-left"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.PlainText, {
     className: "saywhat",
-    placeholder: "oranges lend their bright, citrusy essence to a myriad of culinary creations. Enjoyed fresh or incorporated into savory dishes, oranges infuse dishes with a burst of sunshine and zest. So whether you're savoring a slice or squeezing a glass of freshly squeezed juice, let the citrusy goodness of oranges brighten your day.\n. ",
+    placeholder: "oranges lend their bright, citrusy essence to a myriad of culinary creations with a burst of sunshine and zest. let the citrusy goodness of oranges brighten your day.\n. ",
     value: attributes.saywhat,
     onChange: saywhat => setAttributes({
       saywhat
